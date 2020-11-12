@@ -1,6 +1,6 @@
 import 'angular';
 import 'angular-route';
 
-import './styles/global.css';
+import './styles/main.sass';
 import './app';
-import './config';
+import './routes';
