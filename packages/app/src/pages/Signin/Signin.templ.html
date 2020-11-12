@@ -1,0 +1,18 @@
+<div class="p-signin">
+  <form ng-submit="handleSubmit()" class="{{ loading ? 'b-disabled' : ''}}">
+    <img class="b-logo" src="../../assets/logo.png" alt="logo">
+
+    <label class="b-label" for="email">E-mail</label>
+    <input class="b-input" ng-model="values.email" placeholder="demo@demo.com" type="email" id="email"/>
+
+    <label class="b-label" for="password">Senha</label>
+    <input class="b-input" ng-model="values.password" placeholder="*****" type="password" id="password" />
+    
+    <button class="b-btn b-primary">
+      Entrar
+    </button>
+    <small>
+      <a href="/#!/auth/signup">Não é cadastrado? Clique aqui!</a>
+    </small>
+  </form>
+</div>
