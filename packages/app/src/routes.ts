@@ -15,8 +15,6 @@ angular
   .run(($rootScope: any, $route: any, $routeParams: any, $location: any) => {
 
     $rootScope.$on('$routeChangeStart',(e: any, next: any) => {
-      console.log("MIDDLEWARE")
-
       const { originalPath } = next.$$route
 
       const user = localStorage.getItem("@app/user") || "{}";
