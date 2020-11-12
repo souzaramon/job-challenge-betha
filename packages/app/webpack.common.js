@@ -8,6 +8,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpg|svg)$/,
+        loader: 'url-loader'
+      },
+      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -17,6 +21,17 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader'
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
         ],
       },
       {
@@ -45,9 +60,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "./public/index.html")
+      template: path.resolve(__dirname, "./public/index.html"),      
     }),
     new MiniCssExtractPlugin({filename: "styles.[hash].css"})
   ],
-  
 };
