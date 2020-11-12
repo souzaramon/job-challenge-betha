@@ -1,4 +1,5 @@
 <div class="p-home">
+  <!-- SIDEBAR: Left panel -->
   <aside>
     <header>
       <img src="../../assets/undraw_profile.svg" alt="logo" class="b-logo" />
@@ -10,16 +11,19 @@
     </ul>
 
     <footer>
-      <button class="b-btn b-primary" ng-click="logout()">Sair</button>
+      <button class="b-btn b-primary" ng-click="onLogout()">Sair</button>
     </footer>
   </aside>
+
   <section>
     <h2>Clientes</h2>
 
     <div>
       <header>
+        <!-- INPUT: Filter -->
         <input class="b-input" ng-model="searchTerm" placeholder="Filtrar" />
         
+        <!-- MODAL: Create client -->
         <b-modal data-title="Cadastrar cliente" on-modal-close="resetCreateValues()">
           <b-modal-content>
             <form ng-submit="submitCreate()" class="b-create-modal-content">
@@ -50,10 +54,12 @@
           </tr>
         </thead>
         <tbody>
+          <!-- TABLE: Rows -->
           <tr ng-repeat="client in clients | filter:searchTerm">
             <td>{{ client.name }}</td>
             <td>{{ client.taxId}}</td>
             <td>
+              <!-- MODAL: Update client -->
               <b-modal data-title="Editar {{ client.name }}" on-modal-close="resetUpdateValues()">
                 <b-modal-content>
                   <form class="b-update-modal-content" ng-submit="submitUpdate(client.taxId)">
@@ -71,6 +77,7 @@
                 </b-modal-anchor>
               </b-modal>
 
+              <!-- MODAL: Delete client -->
               <b-modal data-title="Remover {{ client.name }}">
                 <b-modal-content>
                   <form class="b-delete-modal-content" ng-submit="submitDelete(client.taxId)">

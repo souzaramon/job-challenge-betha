@@ -1,6 +1,9 @@
 <div class="p-signup">
   <form ng-submit="handleSubmit()">
-    <img src="../../assets/undraw-userflow.svg" alt="user flow ilustration">
+    <img
+      src="../../assets/undraw-userflow.svg"
+      alt="user flow ilustration"
+    />
 
     <label class="b-label" for="name">Digite seu nome</label>
     <input class="b-input" ng-model="values.name" placeholder="Ramon Souza" id="name">
@@ -11,15 +14,15 @@
     <label class="b-label" for="password"> Digite sua senha</label>
     <input class="b-input" ng-model="values.password" placeholder="*****" type="password" id="password" />
     
-    <label class="b-label" for="repassword">Digite sua senha novamente</label>
-    <input class="b-input" ng-model="values.repassword" placeholder="*****" type="password" id="repassword" />
+    <label class="b-label" for="repassword">Digite sua senha novamente <small>{{ values.password ? "(Sim, foi intencional. Ninguém gosta de re-digitar nada kkjj)" : ""}}</small></label>
+    <input class="b-input" ng-model="values.password" placeholder="*****" type="password" id="repassword" />
     
     <label class="b-checkbox" for="terms">
-      <input type="checkbox" ng-model="terms" id="terms">
+      <input type="checkbox" ng-model="values.terms" id="terms">
       Entendo que está aplicação é um teste, e acredito que um checkbox no cadastro de usuário é bem realista
     </label>
 
-    <button class="b-btn b-primary">
+    <button class="b-btn b-primary {{ isFieldsEmpty ? 'b-disabled' : ''}}">
       Registrar-se
     </button>
 
