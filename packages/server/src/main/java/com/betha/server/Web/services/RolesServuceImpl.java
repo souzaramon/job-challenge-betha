@@ -23,16 +23,15 @@ public class RolesServuceImpl implements RolesService {
     }
     
     public Optional<Role> update(Long id, Role roleAttrs) {
-        Optional<Role> roleOptional = roleRepository.findById(id);
+        Optional<Role> roleOptional = roleRepository.findOneById(id);
 
         if(!roleOptional.isPresent()) {
             return Optional.ofNullable(null);
         }
 
         roleAttrs.setId(id);
-        roleRepository.save(roleAttrs);
 
-        return Optional.ofNullable(roleAttrs);
+        return Optional.ofNullable(roleRepository.save(roleAttrs));
     }
     
     public void delete(Long id) {

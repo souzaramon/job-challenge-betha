@@ -1,6 +1,7 @@
 package com.betha.server.Config;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import com.betha.server.Persistence.entities.User;
 import com.betha.server.Persistence.repositories.UserRepository;
@@ -24,13 +25,13 @@ public class UserDetailsServiceOverride implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
+        Optional<User> user = userRepository.findByEmail(username);
         
-        if(user == null) {
+        if(!user.isPresent()) {
             throw new UsernameNotFoundException("Usuário ou senha incorretos.");
         }
 
-        return new UserRepositoryUserDetails(user);
+        return new UserRepositoryUserDetails(user.get());
     }
 
     private final static class UserRepositoryUserDetails extends User implements UserDetails {

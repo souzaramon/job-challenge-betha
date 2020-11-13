@@ -1,6 +1,5 @@
 package com.betha.server.Web.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,13 @@ public class RolesController {
     private RolesService rolesService;
 
     @GetMapping
-    public List<Role> index() {
-        return rolesService.list();
+    public ResponseEntity<Object> index() {
+        return ResponseEntity.ok(rolesService.list());
     }
 
     @PostMapping
-    public Role store(@RequestBody Role roleAttrs) {
-        return rolesService.create(roleAttrs);
+    public ResponseEntity<Object> store(@RequestBody Role roleAttrs) {
+        return ResponseEntity.ok(rolesService.create(roleAttrs));
     }
 
     @PutMapping("/{id}")
@@ -46,7 +45,9 @@ public class RolesController {
     }
     
     @DeleteMapping("/{id}")
-    public void destroy(@PathVariable Long id) {
+    public ResponseEntity<Object> destroy(@PathVariable Long id) {
         rolesService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

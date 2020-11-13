@@ -39,4 +39,14 @@ public class Phone {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Customer customer;
+
+    public Phone() {}
+
+    public Phone(Phone phone) {
+        super();
+
+        this.ddd = phone.getDdd();
+        this.number = phone.getNumber();
+        this.customer = phone.getCustomer();
+    }
 }

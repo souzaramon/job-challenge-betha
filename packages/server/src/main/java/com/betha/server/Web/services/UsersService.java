@@ -8,5 +8,6 @@ import com.betha.server.Persistence.entities.User;
 public interface UsersService {
     public List<User> list();
     public Optional<User> get(Long id);
+    public Optional<User> create(User userAttrs);
     public Optional<User> update(Long id, User userAttrs);
 }

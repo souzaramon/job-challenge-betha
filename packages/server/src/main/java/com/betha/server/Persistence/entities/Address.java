@@ -38,10 +38,24 @@ public class Address {
     private String state;
 
     private String city;
-
+    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Customer customer;
+
+    public Address() {}
+
+    public Address(Address address) {
+        super();
+
+        this.zipCode = address.getZipCode();
+        this.street = address.getStreet();
+        this.number = address.getNumber();
+        this.coutry = address.getCoutry();
+        this.state = address.getState();
+        this.city = address.getCity();
+        this.customer = address.getCustomer();
+    }
 }

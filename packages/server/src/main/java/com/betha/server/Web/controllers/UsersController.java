@@ -1,6 +1,5 @@
 package com.betha.server.Web.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,8 @@ public class UsersController {
     UsersService usersService;
 
     @GetMapping
-    public List<User> index() {
-        return usersService.list();
+    public ResponseEntity<Object> index() {
+        return ResponseEntity.ok(usersService.list());
     }
 
     @GetMapping("/{id}")

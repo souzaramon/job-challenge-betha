@@ -23,6 +23,16 @@ public class UsersServiceImpl implements UsersService {
         return userRepository.findById(id);
     }
 
+    public Optional<User> create(User userAttrs) {
+        Optional<User> userOptional = userRepository.findByEmail(userAttrs.getEmail());
+
+        if(userOptional.isPresent()) {
+            return Optional.ofNullable(null);
+        }
+
+        return Optional.ofNullable(userRepository.save(userAttrs));
+    }   
+
     public Optional<User> update(Long id, User userAttrs) {
         Optional<User> userOptional = userRepository.findById(id);
 
