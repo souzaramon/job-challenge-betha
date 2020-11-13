@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
+@SuppressWarnings("deprecation") // @TODO: migrate ResourceServerConfig
 @Configuration
 @EnableResourceServer
 public class OAuth2ServerConfig extends ResourceServerConfigurerAdapter{
