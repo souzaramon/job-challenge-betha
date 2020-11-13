@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.betha.server.Persistence.entities.Role;
 import com.betha.server.Persistence.entities.User;
@@ -28,21 +29,23 @@ public class DBInit implements ApplicationListener<ContextRefreshedEvent>{
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        List<User> users = userRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
 
-        if(users.isEmpty()) {
-            this.createUser("root", "r@r.com", passwordEncoder.encode("123"), "ROLE_ADMIN");
+        if(roles.isEmpty()) {
+            Role roleAdmin = new Role("ROLE_ADMIN"); 
+            Role roleUser = new Role("ROLE_USER");
+
+            this.roleRepository.save(roleAdmin);
+            this.roleRepository.save(roleUser);
+
+            this.userRepository.save(
+                new User(
+                    "root",
+                    "root@root.com",
+                    passwordEncoder.encode("root"),
+                    Arrays.asList(roleAdmin)
+                )
+            );
         }
-    }
-
-    public void createUser(String name, String email, String password, String roleName) {
-        Role role = new Role();
-        role.setName(roleName);
-
-        this.roleRepository.save(role);
-
-        User user = new User(name, email, password, Arrays.asList(role));
-
-        this.userRepository.save(user);
     }
 }
