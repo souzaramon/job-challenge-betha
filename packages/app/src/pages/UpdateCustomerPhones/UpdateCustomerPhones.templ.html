@@ -1,0 +1,64 @@
+<b-page-layout data-title="Editar telefones do cliente {{ id }}">
+  <div class="b-page-update-customer-phone {{ loading ? 'b-disabled' : ''}}">
+    <header>
+      <a class="b-btn b-primary b-rounded" href="/#!/">
+        <span class="material-icons">home</span>
+      </a>
+
+      <a class="b-btn b-primary b-rounded" href="/#!/update/{{id}}">
+        <span class="material-icons">arrow_back</span>
+      </a>
+
+      <b-modal data-title="Novo telefone">
+        <b-modal-content class="b-modal-content">
+          <form class="b-modal-content {{ loading ? 'b-disabled' : ''}}" ng-submit="handleSubmit($parent)" >
+            <label class="b-label" for="ddd">DDD</label>
+            <input class="b-input" ng-model="values.ddd" placeholder="48" id="ddd">
+        
+            <label class="b-label" for="number">Número</label>
+            <input class="b-input" ng-model="values.number" placeholder="998222545" id="number"/>
+
+            <footer>
+              <button class="b-btn b-primary">
+                Cadastrar
+              </button>
+            </footer>
+          </form>
+        </b-modal-content>
+        <b-modal-anchor>
+          <button class="b-btn b-primary b-rounded" ng-click="$parent.toggleVisible()">
+            <span class="material-icons">add</span>
+          </button>
+        </b-modal-anchor>
+      </b-modal>
+    </header>
+
+    <section>
+      <ul>
+        <li ng-repeat="phone in phones">
+          <span>({{phone.ddd}}) {{phone.number}}</span>
+
+          <b-modal data-title="Remover {{ phone.number }}">
+            <b-modal-content>
+              <form class="b-modal-content" ng-submit="submitDelete($parent, phone.id)">
+                <footer>
+                  <button type="button" class="b-btn" ng-click="$parent.toggleVisible()">Cancelar</button>
+                  <button type="submit" class="b-btn b-danger">Remover</button>
+                </footer>
+              </form>
+            </b-modal-content>
+            <b-modal-anchor>
+              <button class="b-btn b-danger" ng-click="$parent.toggleVisible()">
+                <span class="material-icons">delete</span>
+              </button>
+            </b-modal-anchor>
+          </b-modal>
+        </li>
+      </ul>
+
+      <footer ng-if="phones.length === 0">
+        Não há telefones
+      </footer>
+    </section>
+  </div>
+</b-page-layout>

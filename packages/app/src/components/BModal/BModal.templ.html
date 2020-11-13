@@ -1,9 +1,11 @@
-<div ng-if="visible" class="b-modal" ng-click="onOverlayClick()">
+<div ng-if="visible" class="BModal" ng-click="onOverlayClick()">
   <section ng-click="onOverlayClick($e)">
     <header>
       <h2>{{ title }}</h2>
 
-      <button class="b-btn b-primary" ng-click="toggleVisible()">x</button>
+      <button class="b-btn" ng-click="toggleVisible()">
+        <span class="material-icons">close</span>
+      </button>
     </header>
 
     <div ng-transclude="content" style="margin-top: auto"></div>

@@ -5,4 +5,4 @@ import './styles/main.sass';
 
 import './app';
 import './components';
-import './routes';
+import './config';

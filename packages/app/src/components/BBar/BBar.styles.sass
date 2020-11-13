@@ -1,0 +1,37 @@
+aside.BBar
+  width: 320px
+  height: 100%
+  background-color: white
+  display: flex
+  flex-direction: column
+  padding: 20px
+  border-left: 10px solid #3f3d56
+
+  > header
+    height: 160px
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: 15px
+
+    > .b-logo
+      width: 100%
+      height: 160px
+
+  > ul
+    margin-top: auto
+
+    li
+      margin: 15px 5px
+      color: #484848
+
+  > footer
+    margin-top: 25px
+
+    .b-btn
+      width: 100%
+  
+@media only screen and (max-width: 775px)
+  aside.BBar
+    display: none
+

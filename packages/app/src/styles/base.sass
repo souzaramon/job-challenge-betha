@@ -15,14 +15,45 @@ a
   &:hover
     text-decoration: underline
 
+table
+  border-collapse: collapse
+
+td
+  border: none
+
 .b-primary
-  color: white
-  background-color: $color-primary
+  color: white !important
+  background-color: $color-primary !important
+
+.b-sencodary
+  color: #333 !important
+  background-color: $color-secondary !important
 
 .b-danger
-  color: white
-  background-color: $color-danger
+  color: white !important
+  background-color: $color-danger !important
 
 .b-disabled
-  opacity: 0.7
+  opacity: 0.4
   pointer-events: none
+
+.b-rounded
+  width: 45px !important
+  height: 45px !important
+  border-radius: 50% !important
+  margin: 10px
+
+  span
+    font-size: 32px
+
+.b-modal-content
+  display: flex
+  flex-direction: column
+
+  > footer
+    display: flex
+    justify-content: flex-end
+    padding: 20px
+
+  .b-btn
+    margin-left: 10px

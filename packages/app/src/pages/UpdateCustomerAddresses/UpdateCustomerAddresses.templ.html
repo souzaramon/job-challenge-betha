@@ -1,0 +1,76 @@
+<b-page-layout data-title="Editar endereços do cliente {{ id }}">
+  <div class="b-page-update-customer-address {{ loading ? 'b-disabled' : ''}}">
+    <header>
+      <a class="b-btn b-primary b-rounded" href="/#!/">
+        <span class="material-icons">home</span>
+      </a>
+      
+      <a class="b-btn b-primary b-rounded" href="/#!/update/{{id}}">
+        <span class="material-icons">arrow_back</span>
+      </a>
+
+      <b-modal data-title="Novo endereço">
+        <b-modal-content class="b-modal-content">
+          <form class="b-modal-content {{ loading ? 'b-disabled' : ''}}" ng-submit="handleSubmit($parent)" >
+            <label class="b-label" for="zipCode">CEP</label>
+            <input class="b-input" ng-model="values.zipCode" placeholder="88904166" id="zipCode">
+            
+            <label class="b-label" for="street">Rua</label>
+            <input class="b-input" ng-model="values.street" placeholder="Rua João Belmiro Nunes" id="street"/>
+            
+            <label class="b-label" for="number">Nº</label>
+            <input class="b-input" ng-model="values.number" placeholder="850" id="number">
+            
+            <label class="b-label" for="country">País</label>
+            <input class="b-input" ng-model="values.country" placeholder="Brasil" id="country"/>
+            
+            <label class="b-label" for="state">Estado</label>
+            <input class="b-input" ng-model="values.state" placeholder="SC" id="state"/>
+            
+            <label class="b-label" for="city">Cidade</label>
+            <input class="b-input" ng-model="values.city" placeholder="Araranguá" id="city"/>
+
+            <footer>
+              <button class="b-btn b-primary">
+                Cadastrar
+              </button>
+            </footer>
+          </form>
+        </b-modal-content>
+        <b-modal-anchor>
+          <button class="b-btn b-primary b-rounded" ng-click="$parent.toggleVisible()">
+            <span class="material-icons">add</span>
+          </button>
+        </b-modal-anchor>
+      </b-modal>
+    </header>
+
+    <section>
+      <ul>
+        <li ng-repeat="address in addresses">
+          <span>{{ address.street }}</span>
+
+          <b-modal data-title="Remover {{ address.street }}">
+            <b-modal-content>
+              <form class="b-modal-content" ng-submit="submitDelete($parent, address.id)">
+                <footer>
+                  <button type="button" class="b-btn" ng-click="$parent.toggleVisible()">Cancelar</button>
+                  <button type="submit" class="b-btn b-danger">Remover</button>
+                </footer>
+              </form>
+            </b-modal-content>
+            <b-modal-anchor>
+              <button class="b-btn b-danger" ng-click="$parent.toggleVisible()">
+                <span class="material-icons">delete</span>
+              </button>
+            </b-modal-anchor>
+          </b-modal>
+        </li>
+      </ul>
+
+      <footer ng-if="addresses.length === 0">
+        Não há endereços
+      </footer>
+    </section>
+  </div>
+</b-page-layout>

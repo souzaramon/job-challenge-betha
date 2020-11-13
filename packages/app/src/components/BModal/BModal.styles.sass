@@ -1,10 +1,11 @@
-.b-modal
+.BModal
   width: 100%
   height: 100%
   position: absolute
   top: 0
   left: 0
-  background: rgba(0, 0, 0, 0.5)
+  animation: overlay-fade-in 0.3s
+  background-color: rgba(101,108,133,0.8)
 
   section
     z-index: 906
@@ -51,3 +52,9 @@
         height: 35px
         width: 35px
         padding: 0
+
+  @keyframes overlay-fade-in
+    from
+      background-color: transparent
+    to
+      background-color: rgba(101,108,133,0.8)

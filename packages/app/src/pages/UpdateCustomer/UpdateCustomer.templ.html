@@ -1,0 +1,41 @@
+<b-page-layout data-title="Editar cliente {{ id }}">
+  <div class="b-page-update-customer {{ loading ? 'b-disabled' : ''}}">
+    <header>
+      <a class="b-btn b-primary b-rounded" href="/#!/">
+        <span class="material-icons">home</span>
+      </a>
+      
+      <a class="b-btn b-primary b-rounded" href="/#!/">
+        <span class="material-icons">arrow_back</span>
+      </a>
+    </header>
+
+    <form ng-submit="handleSubmit()">
+      <label class="b-label" for="name">Nome</label>
+      <input class="b-input" ng-model="values.name" placeholder="Maria" id="name">
+  
+      <label class="b-label" for="taxId">CPF ou CNPJ</label>
+      <input class="b-input" ng-model="values.taxId" placeholder="00000000-00" id="taxId"/>
+      
+      <section>
+        <h3>Telefones</h3>
+
+        <a class="b-btn b-primary b-rounded" href="/#!/update/{{ id }}/phones">
+          <span class="material-icons">read_more                                                            </span>
+        </a>
+      </section>
+
+      <section>
+        <h3>Endereços</h3>
+
+        <a class="b-btn b-primary b-rounded" href="/#!/update/{{ id }}/addresses">
+          <span class="material-icons">read_more</span>
+        </a>        
+      </section>
+
+      <button class="b-btn b-primary"                                         >
+        Atualizar
+      </button>                                         
+    </form>
+  </div>
+</b-page-layout>

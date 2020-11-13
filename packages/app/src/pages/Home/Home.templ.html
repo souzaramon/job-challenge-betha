@@ -1,100 +1,74 @@
-<div class="p-home">
-  <!-- SIDEBAR: Left panel -->
-  <aside>
+<b-page-layout data-title="Clientes">
+  <div class="b-page-home {{ loading ? 'b-disabled' : ''}}">
     <header>
-      <img src="../../assets/undraw_profile.svg" alt="logo" class="b-logo" />
-    </header>
-    <ul>
-      <li>Ilustrações opensource providas pela plataforma <a href="https://undraw.co/illustrations" target="_blank"><b>unDraw</b></a></li>
-      <li>O cliente http utilizado é provido pelo próprio AngularJS</li>
-      <li>A escolha do webpack para o projeto foi previamente estudada e demonstrou ser muito efetiva</li>
-    </ul>
-
-    <footer>
-      <button class="b-btn b-primary" ng-click="onLogout()">Sair</button>
-    </footer>
-  </aside>
-
-  <section>
-    <h2>Clientes</h2>
-
-    <div>
-      <header>
-        <!-- INPUT: Filter -->
+      <div class="b-search-bar">
+        <span class="material-icons">search</span>
         <input class="b-input" ng-model="searchTerm" placeholder="Filtrar" />
+      </div>
+      
+      <b-modal data-title="Novo cliente">
+        <b-modal-content class="b-modal-content">
+          <form class="b-modal-content {{ loading ? 'b-disabled' : ''}}" ng-submit="submitCreate($parent)" >
+            <label class="b-label" for="name">Nome</label>
+            <input class="b-input" ng-model="values.name" placeholder="Maria" id="name">
         
-        <!-- MODAL: Create client -->
-        <b-modal data-title="Cadastrar cliente" on-modal-close="resetCreateValues()">
-          <b-modal-content>
-            <form ng-submit="submitCreate()" class="b-create-modal-content">
-              <label class="b-label">Nome</label>
-              <input class="b-input" ng-model="values.create.name"/>
+            <label class="b-label" for="taxId">CPF ou CNPJ</label>
+            <input class="b-input" ng-model="values.taxId" placeholder="00000000-00" id="taxId"/>
+            
+            <footer>
+              <button class="b-btn b-primary">
+                Cadastrar
+              </button>
+            </footer>
+          </form>
+        </b-modal-content>
+        <b-modal-anchor>
+          <button class="b-btn b-primary b-rounded" ng-click="$parent.toggleVisible()">
+            <span class="material-icons">add</span>
+          </button>
+        </b-modal-anchor>
+      </b-modal>
+    </header>
 
-              <label class="b-label">CPF ou CNPJ</label>
-              <input class="b-input" ng-model="values.create.taxId"/>
+    <table>
+      <thead>
+        <tr>
+          <td>Nome</td>
+          <td>CPF</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="client in clients | filter: searchTerm as filtered">
+          <td>{{ client.name }}</td>
+          <td>{{ client.taxId }}</td>
+          <td>
+            <a class="b-btn b-primary b-btn-icon" href="/#!/update/{{ client.id }}">
+              <span class="material-icons">create</span>
+            </a>
 
-              <footer>
-                <button type="button" class="b-btn" ng-click="$parent.toggleVisible();">Cancelar</button>
-                <button type="submit" class="b-btn b-primary">Salvar</button>
-              </footer>
-            </form>
-          </b-modal-content>
-          <b-modal-anchor>
-            <button class="b-btn b-primary b-btn-icon" ng-click="$parent.toggleVisible()">+</button>
-          </b-modal-anchor>
-        </b-modal>
-      </header>
+            <b-modal data-title="Remover {{ client.name }}">
+              <b-modal-content>
+                <form class="b-modal-content" ng-submit="submitDelete($parent, client.id)">
+                  <footer>
+                    <button type="button" class="b-btn" ng-click="$parent.toggleVisible()">Cancelar</button>
+                    <button class="b-btn b-danger">Remover</button>
+                  </footer>
+                </form>
+              </b-modal-content>
+              <b-modal-anchor>
+                <button class="b-btn b-danger b-btn-icon" ng-click="$parent.toggleVisible()">
+                  <span class="material-icons">delete</span>
+                </button>
+              </b-modal-anchor>
+            </b-modal>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <table>
-        <thead>
-          <tr>
-            <td>Nome</td>
-            <td>CPF</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- TABLE: Rows -->
-          <tr ng-repeat="client in clients | filter:searchTerm">
-            <td>{{ client.name }}</td>
-            <td>{{ client.taxId}}</td>
-            <td>
-              <!-- MODAL: Update client -->
-              <b-modal data-title="Editar {{ client.name }}" on-modal-close="resetUpdateValues()">
-                <b-modal-content>
-                  <form class="b-update-modal-content" ng-submit="submitUpdate(client.taxId)">
-                    <label class="b-label">Nome</label>
-                    <input class="b-input" ng-value="client.name" ng-model="values.update[client.taxId].name">
-
-                    <footer>
-                      <button type="button" class="b-btn" ng-click="$parent.toggleVisible();">Cancelar</button>
-                      <button type="submit" class="b-btn b-primary">Salvar</button>
-                    </footer>
-                  </form>
-                </b-modal-content>
-                <b-modal-anchor>
-                  <button class="b-btn b-primary b-btn-icon" ng-click="$parent.toggleVisible();">E</button>
-                </b-modal-anchor>
-              </b-modal>
-
-              <!-- MODAL: Delete client -->
-              <b-modal data-title="Remover {{ client.name }}">
-                <b-modal-content>
-                  <form class="b-delete-modal-content" ng-submit="submitDelete(client.taxId)">
-                    <footer>
-                      <button type="button" class="b-btn" ng-click="$parent.toggleVisible()">Cancelar</button>
-                      <button type="submit" class="b-btn b-danger">Remover</button>
-                    </footer>
-                  </form>
-                </b-modal-content>
-                <b-modal-anchor>
-                  <button class="b-btn b-danger b-btn-icon" ng-click="$parent.toggleVisible()">X</button>
-                </b-modal-anchor>
-              </b-modal>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</div>
+    <footer ng-if="filtered.length === 0">
+      Sem resultados ...
+    </footer>
+  </div>
+</b-page-layout>

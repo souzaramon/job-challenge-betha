@@ -1,4 +1,6 @@
-function Controller($scope: any) {
+import { API_BASE_URL } from '~/constants';
+
+function Controller($scope: any, $http: any, $location: any) {
   $scope.values = {
     name: '',
     email: '',
@@ -14,10 +16,15 @@ function Controller($scope: any) {
   })
 
   $scope.handleSubmit = (e: any) => {
-    console.log($scope.values)
+    const { terms, ...body } = $scope.values
+
+    $http.post(API_BASE_URL + '/register/user', body)
+      .then(() => {
+        $location.path('/auth/signin');
+      })
   }
 }
 
-Controller.$inject = ["$scope"];
+Controller.$inject = ["$scope", "$http", "$location"];
 
 export default Controller;
