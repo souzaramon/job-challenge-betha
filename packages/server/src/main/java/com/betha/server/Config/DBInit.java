@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import com.betha.server.Persistence.entities.Role;
 import com.betha.server.Persistence.entities.User;
