@@ -27,12 +27,11 @@ public class UsersServiceImpl implements UsersService {
         Optional<User> userOptional = userRepository.findById(id);
 
         if(!userOptional.isPresent()) {
-            return null;
+            return Optional.ofNullable(null);
         }
 
         userAttrs.setId(id);
-        userRepository.save(userAttrs);
 
-        return Optional.ofNullable(userAttrs);
+        return Optional.ofNullable(userRepository.save(userAttrs));
     }   
 }

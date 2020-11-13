@@ -26,7 +26,7 @@ public class RolesServuceImpl implements RolesService {
         Optional<Role> roleOptional = roleRepository.findById(id);
 
         if(!roleOptional.isPresent()) {
-            return null;
+            return Optional.ofNullable(null);
         }
 
         roleAttrs.setId(id);
