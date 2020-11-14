@@ -19,6 +19,11 @@ Obs: Podem ocorrer problemas na hora de instalar as dependencias. Isso dependend
 
 ### Server
 
+```sh
+cd packages/server
+./mvnw spring-boot:run
+```
+
 As seguintes variaveis devem ser configuradas em ``application.propertioes`
 
 - spring.datasource.url=
