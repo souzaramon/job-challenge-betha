@@ -1,8 +1,12 @@
 # Betha Fullstack Challenge
+- [**INSTRUCTIONS.md**](/INSTRUCTIONS.md): Especificações do projeto.
 
-## Como rodar o projeto
+## Packages
 
-### App
+- [**app**](/packages/app): FrontEnd aplication client, written in Typescript and AngularJS.
+- [**server**](/packages/server): Backend aplication, writen in Java and uses spring-boot.
+
+### app
 
 ```sh
 cd packages/app
@@ -17,8 +21,7 @@ Deps:
 
 Obs: Podem ocorrer problemas na hora de instalar as dependencias. Isso dependende do seu sistema operacional, uma dica rapida e fácil é: Se tiver problemas utilize `yarn install --ignore-engines`
 
-### Server
-
+### server
 ```sh
 cd packages/server
 ./mvnw spring-boot:run
@@ -40,3 +43,7 @@ Deps:
 
 - Postgressql 10.14
 - Apache Maven 3.6.0
+
+## Deadline
+
+Friday, October **18**, 2019 to Friday, October **25**, 2019
